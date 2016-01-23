@@ -38,7 +38,7 @@
                              Note: The link and contents must be here since we 
                              cannot pass .Site.BaseURL as part of the context 
                         -->
-                        <a href="{{ if .disable }}#!{{ else }}{{ $baseUrl }}{{ .link }}{{ end }}" class="flex-item">
+                        <a href="{{ if .disable }}#!{{ else }} {{ if not .external  }}{{ $baseUrl }}{{ end }}{{ .link }}{{ end }}" class="flex-item">
                             <div class="cell
                                 fill-container
                                 no-padding
