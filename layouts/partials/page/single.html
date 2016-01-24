@@ -2,11 +2,44 @@
 {{ partial "core/head.html" . }}
 
 <body class="page-colors minimum-viewport-height">
+    <style>
+     .center-space ul, .center-space ul li { list-style-type: initial; }
+     .center-space ul li { margin-left: 1em; }
+     section h2 { font-weight: bold; font-size: 2.5rem; margin-bottom: 1rem; }
+     section h3 { font-size: 2rem; margin-top: 1rem; margin-bottom: .25rem;}
+     section h3 + p {margin-bottom: .25rem; margin-top: .25rem; }
+    </style>
     {{ partial "core/main-menu.html" . }}
 
-    <section class="main-content">
-        {{ .Content }}
-    </section>
+    <div class="main-content">
+        <div class="center-space">
+            <div class="article-colors">
+                {{ with .Params.image }}
+                    <img src="{{ . }}" class="fill-container-width"></img>
+                {{ end }}
+                <article>
+                    <header>
+                        <h1 class="article-title">{{ .Title }}</h1>
+                    </header>
+
+                    <hr>
+
+                    <section>
+                        {{ with .Params.redirect }}
+                            <p>If you are not redirected automatically, follow the <a href="{{ . }}">link</a>.</p>
+                        {{ else }}
+                            {{ .Content }}
+                        {{ end }}
+                    </section>
+
+                    <footer class="right-align">
+                        <p><small>{{ .Site.Copyright | markdownify }}</small></p>
+                    </footer>
+
+                </article>
+            </div>
+        </div>
+    </div>
 
     {{ partial "core/js.html" . }}
 </body>
